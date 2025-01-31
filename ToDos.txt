@@ -1,0 +1,6 @@
+- Namen eingeben
+- Buzzer auf Tastatur
+- Wählen zwischen 5 und X Fragen
+
+- 2+ Spieler
+- > Dann einzelne Buzzer Taste für jeweiligen Spieler

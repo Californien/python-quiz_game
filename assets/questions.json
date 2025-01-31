@@ -1,0 +1,36 @@
+[
+  {
+    "q_id": 1,
+    "q_type": "multiple_choice",
+    "content": {
+      "question": "Was ist die Hauptstadt von Frankreich?",
+      "choices": ["Berlin", "Madrid", "Paris", "Rom"],
+      "correct": "Paris"
+    }
+  },
+  {
+    "q_id": 2,
+    "q_type": "multiple_choice",
+    "content": {
+      "question": "Welches Element hat das chemische Symbol 'O'?",
+      "choices": ["Wasserstoff", "Sauerstoff", "Stcikstoff", "Kohlenstoff"],
+      "correct": "Sauerstoff"
+    }
+  },
+  {
+    "q_id": 3,
+    "q_type": "input",
+    "content": {
+      "question": "Wie viele Kontinente gibt es auf der Erde?",
+      "answers": ["7", "sieben"]
+    }
+  },
+  {
+    "q_id": 4,
+    "q_type": "input",
+    "content": {
+      "question": "Wer malte das berühmte Gemälde 'Die Mona Lisa'?",
+      "answers": ["leonardo da vinci"]
+    }
+  }
+]
