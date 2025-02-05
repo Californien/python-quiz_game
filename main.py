@@ -1,5 +1,6 @@
 # Importing questions; config
 
+from gameLogic import runQuiz
 import json
 import colorama
 from colorama import Fore, Style
@@ -26,9 +27,39 @@ print('\n')
 
 # Game configuration Questions
 
-def startGameQuestions():
-    players = configQuestion('Wie viele Spieler spielen mit?', 0)
+def runSingleplayerCfg():
+    print('Singleplayer cfg...')
 
+def runMultiplayerCfg(count):
+    print('Multiplayer cfg', count)
+
+def startGameQuestions():
+    wrong_answers = 0
+    while True:
+        try:
+            players = int(configQuestion('Wie viele Spieler spielen mit? (1-4)', 0))
+            if wrong_answers > 0:
+                print(Fore.LIGHTGREEN_EX + 'Geht doch!')
+            if players > 1:
+                runMultiplayerCfg(players)
+                break
+            elif players == 1:
+                runSingleplayerCfg()
+                break
+            elif players != 1 and players != 2 and players != 3 and players != 4:
+                print(Fore.YELLOW + 'Warte...')
+                print(Fore.RED + 'Nope das geht nicht.')
+                print(Fore.RED + Style.BRIGHT + 'Spiel vorbei.')
+                break
+        except ValueError:
+            if wrong_answers == 0:
+                print(Fore.LIGHTRED_EX + 'Hey! Gib mal jetzt richtige Antworten ein!')
+            elif wrong_answers == 1:
+                print(Fore.RED + 'Wer sich vor dem Quiz schon so anstellt, kann im Quiz selbst nicht weit kommen...')
+            elif wrong_answers > 1:
+                print(Fore.RED + 'Ne komm, du meinst es nicht ernst...')
+                print(Fore.RED + Style.BRIGHT + 'Spiel vorbei.')
+                break
 
 def configQuestion(question, ready):
     if ready == 'ready':
@@ -58,11 +89,4 @@ while ready != 0:
         print(Fore.RED + Style.BRIGHT + 'Spiel vorbei.')
         break
 
-# Quiz Logic
 
-def runQuiz():
-    print('Quiz start...')
-    # score = 0
-    # max_score = len(questions)
-    # for q in questions:
-    #     print(f'[{q['q_id']}] {q['content']['question']}')
