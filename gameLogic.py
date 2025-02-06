@@ -1,3 +1,12 @@
+import time
+import keyboard
+
+def activateBuzzer():
+    print('buzzer')
+    while True:
+        if keyboard.is_pressed('b'):
+            return 'b' 
+
 def runQuiz():
     print('Quiz start...')
     # score = 0
