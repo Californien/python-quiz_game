@@ -1,15 +1,11 @@
-# Importing questions; config
+# config
 
 import time
-import json
 import colorama
 import keyboard
 from colorama import Fore, Style
-
 from gameLogic import runQuiz, activateBuzzer
 colorama.init()
-with open('./assets/questions.json', 'r', encoding='utf-8') as file:
-    questions = json.load(file)
 
 # Title
 
@@ -29,6 +25,8 @@ print(c_b + space + '               Willkommen beim besten Quiz-Spiel!' + reset)
 print('\n')
 
 # Game configuration Questions
+
+gameConfig = {}
 
 def configQuestion(question, ready):
     if ready == 'ready':
@@ -59,30 +57,71 @@ def runSingleplayerCfg():
         elif keyboard.is_pressed('3'):
             qCount = 20
             break
+    print(Fore.LIGHTGREEN_EX + Style.BRIGHT + '✓ ' + Fore.LIGHTWHITE_EX + Style.NORMAL + f'{qCount} Fragen.')
     time.sleep(0.5)
     print(Fore.LIGHTWHITE_EX + Style.NORMAL + f'\n\nOkay {name}, das Quiz mit {str(qCount)} Fragen geht gleich los. Sobald du die Antwort weißt, drücke den Buzzer (Taste ' + Style.BRIGHT + 'B' + Style.NORMAL + '), um deine Antwort abzugeben.')
     time.sleep(6)
-    print(Fore.LIGHTYELLOW_EX + Style.NORMAL + 'Achtung! Es wird die Zeit zwischen dem Stellen der Frage und dem Drücken des Buzzers gestoppt! Wenn du buzzerst, hast du maximal 4 Sekunden zum Antworten!')
-    time.sleep(9)
     print(Fore.LIGHTGREEN_EX + Style.NORMAL + '\nAlles verstanden?')
     time.sleep(3)
     print('Sobald du bereits bist, ...')
     time.sleep(2.5)
-    activateBuzzer('b', runQuiz, {
-        'quizConfig': {
-            'questionCount': qCount,
-            'players': [
-                {
-                    'name': name,
-                    'buzzerBind': 'b'
-                }
-            ]
-        }
-    })
+    gameConfig = {
+        'players': [
+            {
+                'id': 1,
+                'name': name,
+                'bind': 'b'
+            }
+        ],
+        'qCount': qCount
+    }
+    activateBuzzer(gameConfig, runQuiz, gameConfig)
 
 def runMultiplayerCfg(count):
     print(reset)
-    print(Fore.LIGHTCYAN_EX + Style.BRIGHT + f'<---  MULTIPLAYER MODUS ({str(count)} P.)  --->')
+    print(Fore.LIGHTCYAN_EX + Style.BRIGHT + f'<---  MULTIPLAYER MODUS ({str(count)} P.)  --->\n\n')
+    time.sleep(0.5)
+    print(f'{Fore.LIGHTRED_EX + Style.BRIGHT + '? '} {reset + Style.BRIGHT + 'Wie viele Fragen möchtet ihr beantworten?'}')
+    print(f'{Fore.LIGHTBLUE_EX + Style.NORMAL + "\nDrücke '1' für 6 Fragen, '2' für 12 Fragen, '3' für 20 Fragen."}\n')
+    qCount = 0
+    while True:
+        if keyboard.is_pressed('1'):
+            qCount = 6
+            break
+        elif keyboard.is_pressed('2'):
+            qCount = 12
+            break
+        elif keyboard.is_pressed('3'):
+            qCount = 20
+            break
+    print(Fore.LIGHTGREEN_EX + Style.BRIGHT + '✓ ' + Fore.LIGHTWHITE_EX + Style.NORMAL + f'{qCount} Fragen.')
+    time.sleep(0.5)
+    binds = ['q', 'r', 'u', 'p']
+    names = []
+    for i in range(1, (count + 1)):
+        name = configQuestion(f'Spieler {i}, wie heißt du?', 0)
+        names.append(name)
+        print(Fore.LIGHTGREEN_EX + Style.BRIGHT + '✓ ' + Fore.LIGHTWHITE_EX + Style.NORMAL + f'Okay {name}, du bist Spieler {i} und erhälst den Buzzer {binds[i - 1].upper()}')
+        time.sleep(2)
+    print(Fore.LIGHTWHITE_EX + Style.NORMAL + f'\n\nOkay, das Quiz mit {str(qCount)} Fragen geht gleich los. Sobald einer von euch die Antwort weißt, drücke dieser Spieler den ihm zugewiesenem Buzzer, um deine Antwort abzugeben.')
+    time.sleep(6)
+    print(Fore.LIGHTGREEN_EX + Style.NORMAL + '\nAlles verstanden?')
+    time.sleep(3)
+    print('Sobald ihr bereits seit, ...')
+    time.sleep(2.5)
+    gameConfig = {
+        'players': [],
+        'qCount': qCount
+    }
+    idTmp = 1
+    for name in names:
+        gameConfig['players'].append({
+            'id': idTmp,
+            'name': name,
+            'bind': binds[idTmp - 1]
+        })
+        idTmp += 1
+    activateBuzzer(gameConfig, runQuiz, gameConfig)
 
 def startGameQuestions():
     wrong_answers = 0
