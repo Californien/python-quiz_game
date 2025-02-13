@@ -3,6 +3,7 @@
 import time
 import json
 import colorama
+import keyboard
 from colorama import Fore, Style
 
 from gameLogic import runQuiz, activateBuzzer
@@ -45,15 +46,39 @@ def runSingleplayerCfg():
     time.sleep(0.5)
     name = configQuestion('Wie heißt du?', 0)
     time.sleep(0.5)
-    print(Fore.LIGHTWHITE_EX + Style.NORMAL + f'Okay {name}, das Quiz geht gleich los. Sobald du die Antwort weißt, drücke den Buzzer (Taste ' + Style.BRIGHT + 'B' + Style.NORMAL + '), um deine Antwort abzugeben.')
-    time.sleep(2)
+    print(f'{Fore.LIGHTRED_EX + Style.BRIGHT + '? '} {reset + Style.BRIGHT + 'Wie viele Fragen möchtest du beantworten?'}')
+    print(f'{Fore.LIGHTBLUE_EX + Style.NORMAL + "Drücke '1' für 6 Fragen, '2' für 12 Fragen, '3' für 20 Fragen."}')
+    qCount = 0
+    while True:
+        if keyboard.is_pressed('1'):
+            qCount = 6
+            break
+        elif keyboard.is_pressed('2'):
+            qCount = 12
+            break
+        elif keyboard.is_pressed('3'):
+            qCount = 20
+            break
+    time.sleep(0.5)
+    print(Fore.LIGHTWHITE_EX + Style.NORMAL + f'\n\nOkay {name}, das Quiz mit {str(qCount)} Fragen geht gleich los. Sobald du die Antwort weißt, drücke den Buzzer (Taste ' + Style.BRIGHT + 'B' + Style.NORMAL + '), um deine Antwort abzugeben.')
+    time.sleep(6)
     print(Fore.LIGHTYELLOW_EX + Style.NORMAL + 'Achtung! Es wird die Zeit zwischen dem Stellen der Frage und dem Drücken des Buzzers gestoppt! Wenn du buzzerst, hast du maximal 4 Sekunden zum Antworten!')
-    time.sleep(3)
+    time.sleep(9)
     print(Fore.LIGHTGREEN_EX + Style.NORMAL + '\nAlles verstanden?')
-    time.sleep(0.75)
+    time.sleep(3)
     print('Sobald du bereits bist, ...')
-    time.sleep(1.5)
-
+    time.sleep(2.5)
+    activateBuzzer('b', runQuiz, {
+        'quizConfig': {
+            'questionCount': qCount,
+            'players': [
+                {
+                    'name': name,
+                    'buzzerBind': 'b'
+                }
+            ]
+        }
+    })
 
 def runMultiplayerCfg(count):
     print(reset)
@@ -89,6 +114,7 @@ def startGameQuestions():
                 wrong_answers = wrong_answers + 1
             elif wrong_answers > 1:
                 print(Fore.RED + 'Ne komm, du meinst es nicht ernst...')
+                time.sleep(0.5)
                 print(Fore.RED + Style.BRIGHT + 'Spiel vorbei.')
                 break
 
@@ -103,6 +129,7 @@ while ready != 0:
         print(Fore.YELLOW + 'Wie kann man vor dem Quiz Fragen bereits falsch beantworten??')
         if wrong_answers > 0:
             print(Fore.RED + 'Ne komm, du meinst es nicht ernst...')
+            time.sleep(0.5)
             print(Fore.RED + Style.BRIGHT + 'Spiel vorbei.')
             break
         wrong_answers = wrong_answers + 1
@@ -110,5 +137,3 @@ while ready != 0:
     else:
         print(Fore.RED + Style.BRIGHT + 'Spiel vorbei.')
         break
-
-
