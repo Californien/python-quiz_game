@@ -45,17 +45,17 @@ def runSingleplayerCfg():
     name = configQuestion('Wie heißt du?', 0)
     time.sleep(0.5)
     print(f'{Fore.LIGHTRED_EX + Style.BRIGHT + '? '} {reset + Style.BRIGHT + 'Wie viele Fragen möchtest du beantworten?'}')
-    print(f'{Fore.LIGHTBLUE_EX + Style.NORMAL + "Drücke '1' für 6 Fragen, '2' für 12 Fragen, '3' für 20 Fragen."}')
+    print(f'{Fore.LIGHTBLUE_EX + Style.NORMAL + "Drücke '1' für 12 Fragen, '2' für 24 Fragen, '3' für 40 Fragen."}')
     qCount = 0
     while True:
         if keyboard.is_pressed('1'):
-            qCount = 6
-            break
-        elif keyboard.is_pressed('2'):
             qCount = 12
             break
+        elif keyboard.is_pressed('2'):
+            qCount = 24
+            break
         elif keyboard.is_pressed('3'):
-            qCount = 20
+            qCount = 40
             break
     print(Fore.LIGHTGREEN_EX + Style.BRIGHT + '✓ ' + Fore.LIGHTWHITE_EX + Style.NORMAL + f'{qCount} Fragen.')
     time.sleep(0.5)
@@ -63,7 +63,7 @@ def runSingleplayerCfg():
     time.sleep(6)
     print(Fore.LIGHTGREEN_EX + Style.NORMAL + '\nAlles verstanden?')
     time.sleep(3)
-    print('Sobald du bereits bist, ...')
+    print('Sobald du bereit bist, ...')
     time.sleep(2.5)
     gameConfig = {
         'players': [
@@ -82,21 +82,21 @@ def runMultiplayerCfg(count):
     print(Fore.LIGHTCYAN_EX + Style.BRIGHT + f'<---  MULTIPLAYER MODUS ({str(count)} P.)  --->\n\n')
     time.sleep(0.5)
     print(f'{Fore.LIGHTRED_EX + Style.BRIGHT + '? '} {reset + Style.BRIGHT + 'Wie viele Fragen möchtet ihr beantworten?'}')
-    print(f'{Fore.LIGHTBLUE_EX + Style.NORMAL + "\nDrücke '1' für 6 Fragen, '2' für 12 Fragen, '3' für 20 Fragen."}\n')
+    print(f'{Fore.LIGHTBLUE_EX + Style.NORMAL + "\nDrücke '1' für 12 Fragen, '2' für 24 Fragen, '3' für 40 Fragen."}\n')
     qCount = 0
     while True:
         if keyboard.is_pressed('1'):
-            qCount = 6
-            break
-        elif keyboard.is_pressed('2'):
             qCount = 12
             break
+        elif keyboard.is_pressed('2'):
+            qCount = 24
+            break
         elif keyboard.is_pressed('3'):
-            qCount = 20
+            qCount = 40
             break
     print(Fore.LIGHTGREEN_EX + Style.BRIGHT + '✓ ' + Fore.LIGHTWHITE_EX + Style.NORMAL + f'{qCount} Fragen.')
-    time.sleep(0.5)
-    binds = ['q', 'r', 'u', 'p']
+    time.sleep(0.25)
+    binds = ['q', 'x', 'n', 'p']
     names = []
     for i in range(1, (count + 1)):
         name = configQuestion(f'Spieler {i}, wie heißt du?', 0)
@@ -107,7 +107,7 @@ def runMultiplayerCfg(count):
     time.sleep(6)
     print(Fore.LIGHTGREEN_EX + Style.NORMAL + '\nAlles verstanden?')
     time.sleep(3)
-    print('Sobald ihr bereits seit, ...')
+    print('Sobald ihr bereit seit, ...')
     time.sleep(2.5)
     gameConfig = {
         'players': [],

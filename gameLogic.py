@@ -43,8 +43,8 @@ def activateBuzzer(cfg, function, *args):
                 visualizeFirstBind(buzzerBind)
                 time.sleep(1)
                 responses = ['war am schnellsten!', 'hat den Buzzer gedrückt!', 'hat den Butter am schnellsten gedrückt!']
-                i = random.randint(0, len(responses) - 1)
-                print(Fore.LIGHTWHITE_EX + Style.BRIGHT + f'\n\n{player['name']} [{player['id']}] {responses[i]}')
+                random.shuffle(responses)
+                print(Fore.LIGHTWHITE_EX + Style.BRIGHT + f'\n\n{player['name']} [{player['id']}] {responses[0]}')
                 if function:
                     function(*args)
                 return player['bind']
@@ -55,12 +55,32 @@ def runQuiz(arg1):
     print(Fore.CYAN + "Okay, der Einstiegstest wurde bestanden, jetzt geht's an's Quiz!\n\n")
     print(f'{arg1}')
 
-    # Shuffled quetsions-list:
-    questionList: list = random.shuffle(questions)
+    # Shuffled questions
+    
+    cfg = arg1
+    qCount: float = cfg['qCount']
+    qCountPerCategory = qCount / 4
+    qToRemovePerCategory: float = 10 - qCountPerCategory
+    for category in questions:
+        random.shuffle(category)
+        for _ in range(qToRemovePerCategory):
+            category.pop()
+
+    print(questions)
+
+    # Score object
+
+    scores = {}
+    for player in cfg['players']:
+        scores[player['name']] = {
+            'score': 0
+        }
+    
+    # Question
 
     def question(object):
-        print(object)
-        # q code here...
+        print(Style.RESET_ALL + '\n\n')
+        print()
 
-    for el in questionList:
+    for el in questions:
         question(el)
