@@ -47,40 +47,83 @@ def activateBuzzer(cfg, function, *args):
                 print(Fore.LIGHTWHITE_EX + Style.BRIGHT + f'\n\n{player['name']} [{player['id']}] {responses[0]}')
                 if function:
                     function(*args)
-                return player['bind']
+                return player
 
 
 def runQuiz(arg1):
-    print(Style.RESET_ALL + '\n\n')
-    print(Fore.CYAN + "Okay, der Einstiegstest wurde bestanden, jetzt geht's an's Quiz!\n\n")
-    print(f'{arg1}')
+    print(Style.RESET_ALL)
+    print(Fore.CYAN + "Okay, der Einstiegsbuzzertest wurde bestanden, jetzt geht's an's Quiz!\n")
+    time.sleep(1)
+    print('Bereit? Dann drücke ' + Style.BRIGHT + 'S' + Style.NORMAL + ' zum starten und ' + Style.BRIGHT + 'A' + Style.NORMAL + ' zum abbrechen.\n')
+
+    while True:
+        if keyboard.is_pressed('s'):
+            print(Fore.GREEN + Style.BRIGHT + "Los geht's!")
+            break
+        elif keyboard.is_pressed('a'):
+            print(Fore.RED + Style.BRIGHT + 'Quiz abgebrochen.')
+            return
 
     # Shuffled questions
     
     cfg = arg1
-    qCount: float = cfg['qCount']
-    qCountPerCategory = qCount / 4
-    qToRemovePerCategory: float = 10 - qCountPerCategory
+    qCount = cfg['qCount']                          # z.B.:   24  |  24 Fragen werden gestellt <-------------
+    qCountPerCategory = qCount / 4                  #         24 / 4 = 6 Fragen pro Kategorie               | 
+    qToRemovePerCategory = 10 - qCountPerCategory   #         10 - 6 = 4 Fragen werden entfernt             |
+                                                    #         ==> Somit bleiben 6 Fragen pro Kategorie      |
+                                                    #             > 6 Fragen * 4 Kategorien = 24 Fragen  <---
     for category in questions:
         random.shuffle(category)
-        for _ in range(qToRemovePerCategory):
+        for _ in range(int(qToRemovePerCategory)):
             category.pop()
-
-    print(questions)
 
     # Score object
 
     scores = {}
     for player in cfg['players']:
-        scores[player['name']] = {
-            'score': 0
-        }
+        scores[player['name']] = 0
     
     # Question
 
-    def question(object):
-        print(Style.RESET_ALL + '\n\n')
-        print()
+    def askQuestion(questionObject: object, num: int):
+        time.sleep(1)
+        question = questionObject['content']['question']
+        qNum = str(num)
+        questionLength = len(question)
+        qId = Fore.LIGHTWHITE_EX + Style.BRIGHT + f'[{qNum}]'
+        print(f'\n{qId}', end='', flush=True)
+        time.sleep(0.5)
+        for i in range(questionLength):
+            qAnimationLog = question[:i + 1]
+            print(f'{qId} {qAnimationLog}', end='\r', flush=True)
+            time.sleep(0.1)
+        print('\n')
+        gameType = questionObject['q_type']
+        player = activateBuzzer(cfg, None)
+        while not player:
+            if player:
+                break
 
-    for el in questions:
-        question(el)
+        print(player)
+
+    
+    def defineCategory(category: str):
+        upperCategory = category.upper()
+        colors = {
+            'GEOGRAPHIE': Fore.LIGHTGREEN_EX,
+            'NATURWISSENSCHAFTEN': Fore.LIGHTCYAN_EX,
+            'KUNST UND KULTUR': Fore.LIGHTMAGENTA_EX,
+            'TECHNOLOGIE UND INNOVATION': Fore.LIGHTBLUE_EX
+        }
+        print(f'\n\n{colors[upperCategory] + Style.BRIGHT + '>>> ───'} {Fore.LIGHTWHITE_EX + Style.BRIGHT + upperCategory} {colors[upperCategory] + Style.BRIGHT + '─── <<<'}\n')
+
+    time.sleep(1)
+
+    for category in questions:
+        qNum = 1
+        currentCategory = category[0]['content']['category']
+        defineCategory(currentCategory)
+        for question in category:
+            questionObject = question
+            askQuestion(questionObject, qNum)
+            qNum += 1
