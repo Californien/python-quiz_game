@@ -1,6 +1,25 @@
-- Namen eingeben
-- Buzzer auf Tastatur
-- Wählen zwischen 5 und X Fragen
+Meilenstein 1:
+- Single-Player: Spieler-/Spielerinnenname frei wählbar  ✓
+- Fragenanzahl wählbar (z.B. 5 oder 10 Fragen)           ✓
+- Fragentyp: freie Antwort                               ✗
+- „Anzeige“ Punktestand                                  ✗
 
-- 2+ Spieler
-- > Dann einzelne Buzzer Taste für jeweiligen Spieler
+Meilenstein 2:
+- Fragen per Zufallsprinzip                              ✓
+- > Listen/Arrays                                        ✓
+- > Methoden/Funktionen                                  ✓
+- > Zufallsgenerator                                     ✓
+- Fragentyp: Antworten-Auswahl                           ✗
+
+Meilenstein 3:
+- Wiederholungen bei Zufallsfragen verhindern            ✓
+- Mehrspieler-Modus (Zwei Spielerinnen/ Spieler)         ✓
+- > Buzzer-Tasten                                        ✓
+- > > Multi-Threading                                   [✓]  >  nicht notwendig
+- > Punktezuordnung                                      ✗
+
+
+
+
+// Symbols:
+// ✓✗
