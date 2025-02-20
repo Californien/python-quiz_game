@@ -5,6 +5,13 @@ import random
 import colorama
 from colorama import Fore, Style
 
+colors = {
+    'GEOGRAPHIE': Fore.LIGHTGREEN_EX,
+    'NATURWISSENSCHAFTEN': Fore.LIGHTCYAN_EX,
+    'KUNST UND KULTUR': Fore.LIGHTMAGENTA_EX,
+    'TECHNOLOGIE UND INNOVATION': Fore.LIGHTBLUE_EX
+}
+
 colorama.init()
 with open('./assets/questions.json', 'r', encoding='utf-8') as file:
     questions = json.load(file)
@@ -86,6 +93,7 @@ def runQuiz(arg1):
     # Question
 
     def askQuestion(questionObject: object, num: int):
+        category = questionObject['content']['category'].upper()
         time.sleep(1)
         question = questionObject['content']['question']
         qNum = str(num)
@@ -98,23 +106,59 @@ def runQuiz(arg1):
             print(f'{qId} {qAnimationLog}', end='\r', flush=True)
             time.sleep(0.1)
         print('\n')
-        gameType = questionObject['q_type']
+        qType = questionObject['q_type']
+
+        if qType == 'multiple_choice':
+            startLine = Fore.LIGHTWHITE_EX + Style.BRIGHT + '? >> '
+            choices = questionObject['content']['choices']
+            for choice in choices:
+                print(f'{startLine}{colors[category] + Style.NORMAL + choice}')  
+
         player = activateBuzzer(cfg, None)
         while not player:
             if player:
                 break
+        time.sleep(0.35)
 
-        print(player)
+        if qType == 'input':
+            answers = questionObject['content']['answers']
+            answer = input(f'{colors[category] + '?'} {Fore.LIGHTWHITE_EX + Style.NORMAL + 'Wie lautet deine Antwort? '}' + Fore.LIGHTCYAN_EX + Style.NORMAL)
+            for correct in answers:
+                if answer.lower() == correct.lower():
+                    print(Fore.GREEN + Style.BRIGHT + 'Richtig!')
+                    scores[player['name']] += 1
+                    break
+                else:
+                    print(Fore.RED + Style.BRIGHT + 'Falsch!')
+                    print(Fore.LIGHTWHITE_EX + Style.NORMAL + 'Richtige Antwort: ' + colors[category] + Style.BRIGHT + correct)
+                    break
+        elif qType == 'multiple_choice':
+            print(f'{Fore.LIGHTWHITE_EX + Style.NORMAL + 'Um deine Antwortmöglichkeit auszuwählen, drücke die Zahl 1, 2, 3 oder 4.'}')
+            correct = questionObject['content']['correct']
+            while True:
+                if keyboard.is_pressed('1'):
+                    answer = choices[0]
+                    break
+                elif keyboard.is_pressed('2'):
+                    answer = choices[1]
+                    break
+                elif keyboard.is_pressed('3'):
+                    answer = choices[2]
+                    break
+                elif keyboard.is_pressed('4'):
+                    answer = choices[3]
+                    break
+            if answer == correct:
+                print(Fore.GREEN + Style.BRIGHT + 'Richtig!')
+                scores[player['name']] += 1
+            else:
+                print(Fore.RED + Style.BRIGHT + 'Falsch!')
+                print(Fore.LIGHTWHITE_EX + Style.NORMAL + 'Richtige Antwort: ' + colors[category] + Style.BRIGHT + correct)
+      
 
     
     def defineCategory(category: str):
         upperCategory = category.upper()
-        colors = {
-            'GEOGRAPHIE': Fore.LIGHTGREEN_EX,
-            'NATURWISSENSCHAFTEN': Fore.LIGHTCYAN_EX,
-            'KUNST UND KULTUR': Fore.LIGHTMAGENTA_EX,
-            'TECHNOLOGIE UND INNOVATION': Fore.LIGHTBLUE_EX
-        }
         print(f'\n\n{colors[upperCategory] + Style.BRIGHT + '>>> ───'} {Fore.LIGHTWHITE_EX + Style.BRIGHT + upperCategory} {colors[upperCategory] + Style.BRIGHT + '─── <<<'}\n')
 
     time.sleep(1)

@@ -76,7 +76,7 @@
       "content": {
         "category": "Geographie",
         "question": "Wie heißt der größte Ozean der Erde?",
-        "answers": ["Pazifischer Ozean"]
+        "answers": ["Pazifischer Ozean", "Pazifik"]
       }
     },
     {
@@ -94,7 +94,7 @@
       "content": {
         "category": "Geographie",
         "question": "Wie heißt die Hauptstadt von Kanada?",
-        "answers": ["ottawa"]
+        "answers": ["Ottawa"]
       }
     }
   ],
@@ -175,7 +175,7 @@
       "content": {
         "category": "Naturwissenschaften",
         "question": "Wie nennt man den Prozess, bei dem Pflanzen Sonnenlicht in Energie umwandeln?",
-        "answers": ["Fotosynthese"]
+        "answers": ["Fotosynthese", "Photosynthese"]
       }
     },
     {
@@ -193,7 +193,7 @@
       "content": {
         "category": "Naturwissenschaften",
         "question": "Wie viele Planeten gibt es in unserem Sonnensystem?",
-        "answers": ["8"]
+        "answers": ["8", "Acht"]
       }
     }
   ],
@@ -274,7 +274,7 @@
       "content": {
         "category": "Kunst und Kultur",
         "question": "Wie heißt das berühmte Buch von J.R.R. Tolkien, das die Geschichte von 'Der Herr der Ringe' erzählt?",
-        "answers": ["Der Hobbit"]
+        "answers": ["Der Hobbit", "Hobbit"]
       }
     },
     {
@@ -283,7 +283,7 @@
       "content": {
         "category": "Kunst und Kultur",
         "question": "Wie heißt der Autor des berühmten Werkes 'Die Verwandlung'?",
-        "answers": ["Franz Kafka"]
+        "answers": ["Franz Kafka", "Kafka"]
       }
     },
     {
