@@ -112,7 +112,8 @@ def runQuiz(arg1):
             startLine = Fore.LIGHTWHITE_EX + Style.BRIGHT + '? >> '
             choices = questionObject['content']['choices']
             for choice in choices:
-                print(f'{startLine}{colors[category] + Style.NORMAL + choice}')  
+                print(f'{startLine}{colors[category] + Style.NORMAL + choice}')
+                time.sleep(0.3)
 
         player = activateBuzzer(cfg, None)
         while not player:
@@ -171,3 +172,16 @@ def runQuiz(arg1):
             questionObject = question
             askQuestion(questionObject, qNum)
             qNum += 1
+
+    print(Fore.LIGHTWHITE_EX + Style.BRIGHT + '\n\nSpiel beendet! Alle Fragen wurde gestellt.')
+    time.sleep(1)
+    print(f'Bereit für die Punkte? Maximal {cfg['qCount']} Punkte konnten pro Spieler vergeben werden.\n')
+    time.sleep(1)
+    for player in scores:
+        entry = Fore.LIGHTYELLOW_EX + Style.BRIGHT + '? >> '
+        chars = 30
+        print(f'{entry}{Fore.YELLOW + Style.BRIGHT + player}{' ' * (chars - len(player) - 5)}{Fore.LIGHTGREEN_EX + Style.BRIGHT + f'{scores[player]} P.'}')
+    if len(cfg['players']) == 1:
+        print(Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Herzlichen Glückwunsch! Du hast das Quiz erfolgreich beendet.')
+    else:
+        # gewonnen / verloren
