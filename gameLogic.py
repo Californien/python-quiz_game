@@ -181,6 +181,7 @@ def runQuiz(arg1):
         entry = Fore.LIGHTYELLOW_EX + Style.BRIGHT + '? >> '
         chars = 30
         print(f'{entry}{Fore.YELLOW + Style.BRIGHT + player}{' ' * (chars - len(player) - 5)}{Fore.LIGHTGREEN_EX + Style.BRIGHT + f'{scores[player]} P.'}')
+        time.sleep(0.5)
     if len(cfg['players']) == 1:
         print(Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Herzlichen Glückwunsch! Du hast das Quiz erfolgreich beendet.')
     else:
