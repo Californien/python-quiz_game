@@ -1,24 +1,28 @@
 Meilenstein 1:
 - Single-Player: Spieler-/Spielerinnenname frei wählbar  ✓
 - Fragenanzahl wählbar (z.B. 5 oder 10 Fragen)           ✓
-- Fragentyp: freie Antwort                               ✗
-- „Anzeige“ Punktestand                                  ✗
+- Fragentyp: freie Antwort                               ✓
+- „Anzeige“ Punktestand                                  ✓
 
 Meilenstein 2:
 - Fragen per Zufallsprinzip                              ✓
 - > Listen/Arrays                                        ✓
 - > Methoden/Funktionen                                  ✓
 - > Zufallsgenerator                                     ✓
-- Fragentyp: Antworten-Auswahl                           ✗
+- Fragentyp: Antworten-Auswahl                           ✓
 
 Meilenstein 3:
 - Wiederholungen bei Zufallsfragen verhindern            ✓
 - Mehrspieler-Modus (Zwei Spielerinnen/ Spieler)         ✓
 - > Buzzer-Tasten                                        ✓
 - > > Multi-Threading                                   [✓]  >  nicht notwendig
-- > Punktezuordnung                                      ✗
+- > Punktezuordnung                                      ✓
+
+- - - > Fertig!
 
 
+Meilenstein 4:
+- PyCharm Kompatibilität                                 ✗
 
 
 // Symbols:

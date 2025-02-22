@@ -184,4 +184,14 @@ def runQuiz(arg1):
     if len(cfg['players']) == 1:
         print(Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Herzlichen Glückwunsch! Du hast das Quiz erfolgreich beendet.')
     else:
-        # gewonnen / verloren
+        max_points = max(scores.values())
+        winners = [name for name, punkte in scores.items() if punkte == max_points]
+        if len(winners) == 1:
+            print(Fore.LIGHTBLUE_EX + Style.BRIGHT + f'\nDamit hat {winners[0]} das Quiz gewonnen! Herzlichen Glückwunsch!')
+            time.sleep(2)
+        else:
+            print(Fore.LIGHTBLUE_EX + Style.BRIGHT + '\nWir haben ein Unentschieden! Die Gewinner sind:')
+            for winner in winners:
+                print(Fore.LIGHTWHITE_EX + Style.BRIGHT + f'>> {winner}')
+            print(Fore.LIGHTBLUE_EX + Style.BRIGHT + '\nHerzlichen Glückwunsch!')
+            time.sleep(2)
