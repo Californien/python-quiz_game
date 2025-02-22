@@ -28,18 +28,6 @@ def activateBuzzer(cfg, function, *args):
         bind = player['bind']
         print(f'{Fore.LIGHTWHITE_EX + Style.NORMAL + f'[{id_}]'} {Style.BRIGHT + name}' + ' ' * (chars - nameL - 4) + Fore.LIGHTMAGENTA_EX + Style.BRIGHT + f'[{bind.upper()}]   <')
 
-    def visualizeFirstBind(bind):
-        list = cfg['players']
-        for _ in range(len(list)):
-            print('\033[F\033[K', end='')
-        for player in list:
-            id_ = player['id']
-            name = player['name']
-            bind = player['bind']
-            if player['bind'] != buzzerBind:
-                print(f'{Fore.LIGHTWHITE_EX + Style.NORMAL + f'[{id_}]'} {Style.BRIGHT + name}' + ' ' * (chars - len(name) - 4) + Fore.LIGHTMAGENTA_EX + Style.BRIGHT + f'[{bind.upper()}]   <')
-            else:
-                print(f'{Fore.LIGHTWHITE_EX + Style.NORMAL + f'[{id_}]'} {Style.BRIGHT + name}' + ' ' * (chars - len(name) - 4) + Fore.LIGHTCYAN_EX + Style.BRIGHT + f'[{bind.upper()}] <')
 
     shouldCheckBind = True
     while shouldCheckBind:
@@ -47,7 +35,6 @@ def activateBuzzer(cfg, function, *args):
             if keyboard.is_pressed(player['bind']):
                 buzzerBind = player['bind']
                 shouldCheckBind = False
-                visualizeFirstBind(buzzerBind)
                 time.sleep(1)
                 responses = ['war am schnellsten!', 'hat den Buzzer gedrückt!', 'hat den Butter am schnellsten gedrückt!']
                 random.shuffle(responses)
@@ -97,17 +84,8 @@ def runQuiz(arg1):
         time.sleep(1)
         question = questionObject['content']['question']
         qNum = str(num)
-        questionLength = len(question)
-        qId = Fore.LIGHTWHITE_EX + Style.BRIGHT + f'[{qNum}]'
-        print(f'\n{qId}', end='', flush=True)
-        time.sleep(0.5)
-        for i in range(questionLength):
-            qAnimationLog = question[:i + 1]
-            print(f'{qId} {qAnimationLog}', end='\r', flush=True)
-            time.sleep(0.1)
-        print('\n')
+        print(Fore.LIGHTWHITE_EX + Style.BRIGHT + f'[{qNum}] {question}')
         qType = questionObject['q_type']
-
         if qType == 'multiple_choice':
             startLine = Fore.LIGHTWHITE_EX + Style.BRIGHT + '? >> '
             choices = questionObject['content']['choices']

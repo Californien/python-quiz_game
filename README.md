@@ -8,6 +8,7 @@
 ### Quiz in PyCharm
 
 **If you want to run the quiz in PyCharm, don't run `main.py` in the root-dir. Instead go into the `_pycharm-compatibility` folder and run the `main.py` there**
+*It's recommended to hold the backspace key for a few seconds in the terminal straight before you've been asked for an input in the pycharm terminal.*
 
 ---
 
