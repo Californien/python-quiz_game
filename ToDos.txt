@@ -22,7 +22,7 @@ Meilenstein 3:
 
 
 Meilenstein 4:
-- PyCharm Kompatibilität                                 ✗
+- PyCharm Kompatibilität                                 ✓
 
 
 // Symbols:
