@@ -16,8 +16,10 @@ colorama.init()
 with open('./assets/questions.json', 'r', encoding='utf-8') as file:
     questions = json.load(file)
 
+
 def activateBuzzer(cfg, function, *args):
-    print(f'\n\n{Fore.LIGHTWHITE_EX + Style.BRIGHT + '>>>>    '}{Fore.LIGHTCYAN_EX + Style.BRIGHT + 'BUZZER'}{Fore.LIGHTWHITE_EX + Style.BRIGHT + '    <<<<'}')
+    print(
+        f'\n\n{Fore.LIGHTWHITE_EX + Style.BRIGHT + '>>>>    '}{Fore.LIGHTCYAN_EX + Style.BRIGHT + 'BUZZER'}{Fore.LIGHTWHITE_EX + Style.BRIGHT + '    <<<<'}')
     players = cfg['players']
     chars = 30
     print('\n')
@@ -26,7 +28,8 @@ def activateBuzzer(cfg, function, *args):
         name = player['name']
         nameL = len(name)
         bind = player['bind']
-        print(f'{Fore.LIGHTWHITE_EX + Style.NORMAL + f'[{id_}]'} {Style.BRIGHT + name}' + ' ' * (chars - nameL - 4) + Fore.LIGHTMAGENTA_EX + Style.BRIGHT + f'[{bind.upper()}]   <')
+        print(f'{Fore.LIGHTWHITE_EX + Style.NORMAL + f'[{id_}]'} {Style.BRIGHT + name}' + ' ' * (
+                    chars - nameL - 4) + Fore.LIGHTMAGENTA_EX + Style.BRIGHT + f'[{bind.upper()}]   <')
 
     def visualizeFirstBind(bind):
         list = cfg['players']
@@ -37,9 +40,11 @@ def activateBuzzer(cfg, function, *args):
             name = player['name']
             bind = player['bind']
             if player['bind'] != buzzerBind:
-                print(f'{Fore.LIGHTWHITE_EX + Style.NORMAL + f'[{id_}]'} {Style.BRIGHT + name}' + ' ' * (chars - len(name) - 4) + Fore.LIGHTMAGENTA_EX + Style.BRIGHT + f'[{bind.upper()}]   <')
+                print(f'{Fore.LIGHTWHITE_EX + Style.NORMAL + f'[{id_}]'} {Style.BRIGHT + name}' + ' ' * (
+                            chars - len(name) - 4) + Fore.LIGHTMAGENTA_EX + Style.BRIGHT + f'[{bind.upper()}]   <')
             else:
-                print(f'{Fore.LIGHTWHITE_EX + Style.NORMAL + f'[{id_}]'} {Style.BRIGHT + name}' + ' ' * (chars - len(name) - 4) + Fore.LIGHTCYAN_EX + Style.BRIGHT + f'[{bind.upper()}] <')
+                print(f'{Fore.LIGHTWHITE_EX + Style.NORMAL + f'[{id_}]'} {Style.BRIGHT + name}' + ' ' * (
+                            chars - len(name) - 4) + Fore.LIGHTCYAN_EX + Style.BRIGHT + f'[{bind.upper()}] <')
 
     shouldCheckBind = True
     while shouldCheckBind:
@@ -49,7 +54,8 @@ def activateBuzzer(cfg, function, *args):
                 shouldCheckBind = False
                 visualizeFirstBind(buzzerBind)
                 time.sleep(1)
-                responses = ['war am schnellsten!', 'hat den Buzzer gedrückt!', 'hat den Butter am schnellsten gedrückt!']
+                responses = ['war am schnellsten!', 'hat den Buzzer gedrückt!',
+                             'hat den Buzzer am schnellsten gedrückt!']
                 random.shuffle(responses)
                 print(Fore.LIGHTWHITE_EX + Style.BRIGHT + f'\n\n{player['name']} [{player['id']}] {responses[0]}')
                 if function:
@@ -61,7 +67,8 @@ def runQuiz(arg1):
     print(Style.RESET_ALL)
     print(Fore.CYAN + "Okay, der Einstiegsbuzzertest wurde bestanden, jetzt geht's an's Quiz!\n")
     time.sleep(1)
-    print('Bereit? Dann drücke ' + Style.BRIGHT + 'S' + Style.NORMAL + ' zum starten und ' + Style.BRIGHT + 'A' + Style.NORMAL + ' zum abbrechen.\n')
+    print(
+        'Bereit? Dann drücke ' + Style.BRIGHT + 'S' + Style.NORMAL + ' zum starten und ' + Style.BRIGHT + 'A' + Style.NORMAL + ' zum abbrechen.\n')
 
     while True:
         if keyboard.is_pressed('s'):
@@ -72,13 +79,13 @@ def runQuiz(arg1):
             return
 
     # Shuffled questions
-    
+
     cfg = arg1
-    qCount = cfg['qCount']                          # z.B.:   24  |  24 Fragen werden gestellt <-------------
-    qCountPerCategory = qCount / 4                  #         24 / 4 = 6 Fragen pro Kategorie               | 
-    qToRemovePerCategory = 10 - qCountPerCategory   #         10 - 6 = 4 Fragen werden entfernt             |
-                                                    #         ==> Somit bleiben 6 Fragen pro Kategorie      |
-                                                    #             > 6 Fragen * 4 Kategorien = 24 Fragen  <---
+    qCount = cfg['qCount']  # z.B.:   24  |  24 Fragen werden gestellt <-------------
+    qCountPerCategory = qCount / 4  # 24 / 4 = 6 Fragen pro Kategorie               |
+    qToRemovePerCategory = 10 - qCountPerCategory  # 10 - 6 = 4 Fragen werden entfernt             |
+    #         ==> Somit bleiben 6 Fragen pro Kategorie      |
+    #             > 6 Fragen * 4 Kategorien = 24 Fragen  <---
     for category in questions:
         random.shuffle(category)
         for _ in range(int(qToRemovePerCategory)):
@@ -89,7 +96,7 @@ def runQuiz(arg1):
     scores = {}
     for player in cfg['players']:
         scores[player['name']] = 0
-    
+
     # Question
 
     def askQuestion(questionObject: object, num: int):
@@ -123,7 +130,8 @@ def runQuiz(arg1):
 
         if qType == 'input':
             answers = questionObject['content']['answers']
-            answer = input(f'{colors[category] + '?'} {Fore.LIGHTWHITE_EX + Style.NORMAL + 'Wie lautet deine Antwort? '}' + Fore.LIGHTCYAN_EX + Style.NORMAL)
+            answer = input(
+                f'{colors[category] + '?'} {Fore.LIGHTWHITE_EX + Style.NORMAL + 'Wie lautet deine Antwort? '}' + Fore.LIGHTCYAN_EX + Style.NORMAL)
             for correct in answers:
                 if answer.lower() == correct.lower():
                     print(Fore.GREEN + Style.BRIGHT + 'Richtig!')
@@ -131,10 +139,12 @@ def runQuiz(arg1):
                     break
                 else:
                     print(Fore.RED + Style.BRIGHT + 'Falsch!')
-                    print(Fore.LIGHTWHITE_EX + Style.NORMAL + 'Richtige Antwort: ' + colors[category] + Style.BRIGHT + correct)
+                    print(Fore.LIGHTWHITE_EX + Style.NORMAL + 'Richtige Antwort: ' + colors[
+                        category] + Style.BRIGHT + correct)
                     break
         elif qType == 'multiple_choice':
-            print(f'{Fore.LIGHTWHITE_EX + Style.NORMAL + 'Um deine Antwortmöglichkeit auszuwählen, drücke die Zahl 1, 2, 3 oder 4.'}')
+            print(
+                f'{Fore.LIGHTWHITE_EX + Style.NORMAL + 'Um deine Antwortmöglichkeit auszuwählen, drücke die Zahl 1, 2, 3 oder 4.'}')
             correct = questionObject['content']['correct']
             while True:
                 if keyboard.is_pressed('1'):
@@ -154,13 +164,13 @@ def runQuiz(arg1):
                 scores[player['name']] += 1
             else:
                 print(Fore.RED + Style.BRIGHT + 'Falsch!')
-                print(Fore.LIGHTWHITE_EX + Style.NORMAL + 'Richtige Antwort: ' + colors[category] + Style.BRIGHT + correct)
-      
+                print(Fore.LIGHTWHITE_EX + Style.NORMAL + 'Richtige Antwort: ' + colors[
+                    category] + Style.BRIGHT + correct)
 
-    
     def defineCategory(category: str):
         upperCategory = category.upper()
-        print(f'\n\n{colors[upperCategory] + Style.BRIGHT + '>>> ───'} {Fore.LIGHTWHITE_EX + Style.BRIGHT + upperCategory} {colors[upperCategory] + Style.BRIGHT + '─── <<<'}\n')
+        print(
+            f'\n\n{colors[upperCategory] + Style.BRIGHT + '>>> ───'} {Fore.LIGHTWHITE_EX + Style.BRIGHT + upperCategory} {colors[upperCategory] + Style.BRIGHT + '─── <<<'}\n')
 
     time.sleep(1)
 
@@ -180,7 +190,8 @@ def runQuiz(arg1):
     for player in scores:
         entry = Fore.LIGHTYELLOW_EX + Style.BRIGHT + '? >> '
         chars = 30
-        print(f'{entry}{Fore.YELLOW + Style.BRIGHT + player}{' ' * (chars - len(player) - 5)}{Fore.LIGHTGREEN_EX + Style.BRIGHT + f'{scores[player]} P.'}')
+        print(
+            f'{entry}{Fore.YELLOW + Style.BRIGHT + player}{' ' * (chars - len(player) - 5)}{Fore.LIGHTGREEN_EX + Style.BRIGHT + f'{scores[player]} P.'}')
         time.sleep(0.5)
     if len(cfg['players']) == 1:
         print(Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Herzlichen Glückwunsch! Du hast das Quiz erfolgreich beendet.')
@@ -188,7 +199,8 @@ def runQuiz(arg1):
         max_points = max(scores.values())
         winners = [name for name, punkte in scores.items() if punkte == max_points]
         if len(winners) == 1:
-            print(Fore.LIGHTBLUE_EX + Style.BRIGHT + f'\nDamit hat {winners[0]} das Quiz gewonnen! Herzlichen Glückwunsch!')
+            print(
+                Fore.LIGHTBLUE_EX + Style.BRIGHT + f'\nDamit hat {winners[0]} das Quiz gewonnen! Herzlichen Glückwunsch!')
             time.sleep(2)
         else:
             print(Fore.LIGHTBLUE_EX + Style.BRIGHT + '\nWir haben ein Unentschieden! Die Gewinner sind:')
