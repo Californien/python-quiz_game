@@ -17,3 +17,7 @@
 ```bash
 python -m venv .venv; .\.venv\Scripts\activate; pip install -r requirements.txt; pycharm .
 ```
+
+
+---
+**`_pycharm-compatibility`** dir is not necessary. Just open a terminal in pycharm with alt + f12
