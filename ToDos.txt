@@ -18,11 +18,14 @@ Meilenstein 3:
 - > > Multi-Threading                                   [✓]  >  nicht notwendig
 - > Punktezuordnung                                      ✓
 
-- - - > Fertig!
-
-
 Meilenstein 4:
-- PyCharm Kompatibilität                                 ✓
+- Neue Frage-Typen:                                      ✗
+- > Wahr / Falsch Fragen                                 ✗
+- > Schätzfragen                                         ✗
+- Punktestand am ende sortieren                          ✗
+- Multiple choice optimieren                             ✗
+
+
 
 
 // Symbols:
