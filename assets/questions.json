@@ -96,6 +96,62 @@
         "question": "Wie heißt die Hauptstadt von Kanada?",
         "answers": ["Ottawa"]
       }
+    },
+    {
+      "q_id": 11,
+      "q_type": "bool",
+      "content": {
+        "category": "Geographie",
+        "question": "Kanada hat mehr Seen als jedes andere Land der Welt.",
+        "correct": true
+      }
+    },
+    {
+      "q_id": 12,
+      "q_type": "bool",
+      "content": {
+        "category": "Geographie",
+        "question": "Der Äquator verläuft durch genau 10 Länder.",
+        "correct": false,
+        "explanation": "Es sind 13 Länder"
+      }
+    },
+    {
+      "q_id": 13,
+      "q_type": "bool",
+      "content": {
+        "category": "Geographie",
+        "question": "Die Sahara ist die größte Wüste der Erde.",
+        "correct": false,
+        "explanation": "Die Antarktis ist größer ;)"
+      }
+    },
+        {
+      "q_id": 14,
+      "q_type": "guess",
+      "content": {
+        "category": "Geographie",
+        "question": "Wie viele Zeitzonen gibt es weltweit?",
+        "correct": 24
+      }
+    },
+    {
+      "q_id": 15,
+      "q_type": "guess",
+      "content": {
+        "category": "Geographie",
+        "question": "Wie viele Kilometer beträgt der Durchmesser der Erde?",
+        "correct": 12742
+      }
+    },
+    {
+      "q_id": 16,
+      "q_type": "guess",
+      "content": {
+        "category": "Geographie",
+        "question": "Wie hoch ist der tiefste Punkt des Marianengrabens?",
+        "correct": 11000
+      }
     }
   ],
   [
@@ -194,6 +250,61 @@
         "category": "Naturwissenschaften",
         "question": "Wie viele Planeten gibt es in unserem Sonnensystem?",
         "answers": ["8", "Acht"]
+      }
+    },
+    {
+      "q_id": 11,
+      "q_type": "bool",
+      "content": {
+        "category": "Naturwissenschaften",
+        "question": "Die menschliche Lunge kann über 5 Liter Luft aufnehmen.",
+        "correct": true
+      }
+    },
+    {
+      "q_id": 12,
+      "q_type": "bool",
+      "content": {
+        "category": "Naturwissenschaften",
+        "question": "Licht ist schneller als Schall",
+        "correct": true
+      }
+    },
+    {
+      "q_id": 13,
+      "q_type": "bool",
+      "content": {
+        "category": "Naturwissenschaften",
+        "question": "Der Sauerstoffanteil in der Erdatmosphäre beträgt genau 50%.",
+        "correct": false,
+        "explanation": "Er liegt bei ca. 21%"
+      }
+    },
+        {
+      "q_id": 14,
+      "q_type": "guess",
+      "content": {
+        "category": "Naturwissenschaften",
+        "question": "Wie viele Chromosomen hat ein Mensch?",
+        "correct": 46
+      }
+    },
+    {
+      "q_id": 15,
+      "q_type": "guess",
+      "content": {
+        "category": "Naturwissenschaften",
+        "question": "Wie heiß ist die Sonne im Kern (in °C)?",
+        "correct": 15000000
+      }
+    },
+    {
+      "q_id": 16,
+      "q_type": "guess",
+      "content": {
+        "category": "Naturwissenschaften",
+        "question": "Wie lange dauert eine vollständige Umdrehung der Erde um ihre eigene Achse (in m)?",
+        "correct": 23.93333333333333
       }
     }
   ],
@@ -294,6 +405,62 @@
         "question": "Wie nennt man die berühmte Statue von Michelangelo, die den biblischen Helden David darstellt?",
         "answers": ["David"]
       }
+    },
+    {
+      "q_id": 11,
+      "q_type": "bool",
+      "content": {
+        "category": "Kunst und Kultur",
+        "question": "Der Roman 'Moby Dick' wurde von Charles Dickens geschrieben.",
+        "correct": false,
+        "explanation": "Es war Herman Melville"
+      }
+    },
+    {
+      "q_id": 12,
+      "q_type": "bool",
+      "content": {
+        "category": "Kunst und Kultur",
+        "question": "William Shakespeare hat genau 50 Theaterstücke geschrieben.",
+        "correct": false,
+        "explanation": "Es sind etwa 39."
+      }
+    },
+    {
+      "q_id": 13,
+      "q_type": "bool",
+      "content": {
+        "category": "Kunst und Kultur",
+        "question": "Das berühmte Gemälde 'Der Schrei' wurde von Evard Munch gemalt.",
+        "correct": true
+      }
+    },
+        {
+      "q_id": 14,
+      "q_type": "guess",
+      "content": {
+        "category": "Kunst und Kultur",
+        "question": "In welchem Jahr wurde das berühmte Gemälde 'Guernica' von Pablo Picasso fertiggestellt?",
+        "correct": 1937
+      }
+    },
+    {
+      "q_id": 15,
+      "q_type": "guess",
+      "content": {
+        "category": "Kunst und Kultur",
+        "question": "Wie viele Oscars hat Walt Disney persönlich gewonnen?",
+        "correct": 22
+      }
+    },
+    {
+      "q_id": 16,
+      "q_type": "guess",
+      "content": {
+        "category": "Kunst und Kultur",
+        "question": "Wie hoch ist die Freiheitsstatue in Metern (inkl. Sockel)?",
+        "correct": 93
+      }
     }
   ],
   [
@@ -393,6 +560,61 @@
         "question": "Was bedeutet die Abkürzung 'AI' im Zusammenhang mit Maschinen?",
         "answers": ["Artificial Intelligence"]
       }
+    },
+        {
+      "q_id": 11,
+      "q_type": "bool",
+      "content": {
+        "category": "Technologie und Innovation",
+        "question": "Der erste Computer wog über eine Tonne.",
+        "correct": true
+      }
+    },
+    {
+      "q_id": 12,
+      "q_type": "bool",
+      "content": {
+        "category": "Technologie und Innovation",
+        "question": "Bluetooth wurde nach einem dänischen König benannt.",
+        "correct": true
+      }
+    },
+    {
+      "q_id": 13,
+      "q_type": "bool",
+      "content": {
+        "category": "Technologie und Innovation",
+        "question": "Die erste E-Mail wurde 1995 verschickt.",
+        "correct": false,
+        "explanation": "Es war 1971"
+      }
+    },
+        {
+      "q_id": 14,
+      "q_type": "guess",
+      "content": {
+        "category": "Technologie und Innovation",
+        "question": "In welchem Jahr wurde der Satellit ins All geschossen?",
+        "correct": 1957
+      }
+    },
+    {
+      "q_id": 15,
+      "q_type": "guess",
+      "content": {
+        "category": "Technologie und Innovation",
+        "question": "Wie viele Zeichen kann ein Tweet (heute 'Post' auf X) maximal haben?",
+        "correct": 280
+      }
+    },
+    {
+      "q_id": 16,
+      "q_type": "guess",
+      "content": {
+        "category": "Technologie und Innovation",
+        "question": "Wie viele Smartphones wurden weltweit im Jahr 2023 verkauft?",
+        "correct": 1200000000
+      }
     }
-  ]        
+  ]
 ]
