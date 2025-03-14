@@ -1,4 +1,4 @@
-# config
+# Config
 
 import time
 import colorama
@@ -156,6 +156,8 @@ def startGameQuestions():
                 time.sleep(0.5)
                 print(Fore.RED + Style.BRIGHT + 'Spiel vorbei.')
                 break
+
+# 'Ready' question
 
 wrong_answers = 0
 ready = configQuestion('Möchtest Du anfangen? (Y / N):', 'ready')
