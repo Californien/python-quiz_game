@@ -188,15 +188,15 @@ def runQuiz(arg1):
             qNum += 1
 
     print(Fore.LIGHTWHITE_EX + Style.BRIGHT + '\n\nSpiel beendet! Alle Fragen wurde gestellt.')
-    time.sleep(1)
+    time.sleep(3)
     print(f'Bereit für die Punkte? Maximal {cfg['qCount']} Punkte konnten pro Spieler vergeben werden.\n')
-    time.sleep(1)
+    time.sleep(3)
     for player in scores:
-        entry = Fore.LIGHTYELLOW_EX + Style.BRIGHT + '? >> '
-        chars = 30
+        entry = Fore.LIGHTYELLOW_EX + Style.BRIGHT + ' >>> '
+        chars = 42
         print(
             f'{entry}{Fore.YELLOW + Style.BRIGHT + player}{' ' * (chars - len(player) - 5)}{Fore.LIGHTGREEN_EX + Style.BRIGHT + f'{scores[player]} P.'}')
-        time.sleep(0.5)
+        time.sleep(1)
     if len(cfg['players']) == 1:
         print(Fore.LIGHTGREEN_EX + Style.BRIGHT + 'Herzlichen Glückwunsch! Du hast das Quiz erfolgreich beendet.')
     else:
