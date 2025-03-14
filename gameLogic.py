@@ -1,3 +1,5 @@
+# Config
+
 import time
 import json
 import keyboard
@@ -16,6 +18,7 @@ colorama.init()
 with open('./assets/questions.json', 'r', encoding='utf-8') as file:
     questions = json.load(file)
 
+# Buzzer function
 
 def activateBuzzer(cfg, function, *args):
     print(
@@ -62,6 +65,7 @@ def activateBuzzer(cfg, function, *args):
                     function(*args)
                 return player
 
+# Quiz logic
 
 def runQuiz(arg1):
     print(Style.RESET_ALL)
