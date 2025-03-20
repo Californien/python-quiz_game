@@ -146,7 +146,6 @@ def runQuiz(arg1):
                 print(Fore.RED + Style.BRIGHT + 'Falsch!')
                 print(Fore.LIGHTWHITE_EX + Style.NORMAL + 'Richtige Antwort: ' + colors[
                     category] + Style.BRIGHT + answers_raw[0])
-
         elif qType == 'multiple_choice':
             print(
                 f'{Fore.LIGHTWHITE_EX + Style.NORMAL + 'Um deine Antwortmöglichkeit auszuwählen, drücke die Zahl 1, 2, 3 oder 4.'}')
