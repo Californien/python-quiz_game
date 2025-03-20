@@ -1,3 +1,2 @@
 colorama
-prompt_toolkit
 keyboard
