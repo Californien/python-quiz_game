@@ -18,12 +18,16 @@ Meilenstein 3:                                         [ ✓ ]
 - > > Multi-Threading                                   (✓)  >  nicht notwendig
 - > Punktezuordnung                                      ✓
 
+Fixes:                                                 [ ✓ ]
+- Mehrere Antwortvariationen bei input Fragen erlauben   ✓
+- Nutzer warnen, wegen Konsole und Terminal Kompl.       ✓
+
 Meilenstein 4:                                         [ ✗ ]
-- Neue Frage-Typen:                                      -
-- > Wahr / Falsch Fragen                                 -
-- > Schätzfragen                                         -
+- Neue Frage-Typen:                                      ✗
+- > Wahr / Falsch Fragen                                 ✗
+- > Schätzfragen                                         ✗
 - Punktestand am ende sortieren                          ✗
-- Multiple choice optimieren                             -
+- Multiple choice optimieren                             ✗
 
 
 
