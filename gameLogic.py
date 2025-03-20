@@ -85,11 +85,11 @@ def runQuiz(arg1):
     # Shuffled questions
 
     cfg = arg1
-    qCount = cfg['qCount']  # z.B.:   24  |  24 Fragen werden gestellt <-------------
-    qCountPerCategory = qCount / 4  # 24 / 4 = 6 Fragen pro Kategorie               |
-    qToRemovePerCategory = 10 - qCountPerCategory  # 10 - 6 = 4 Fragen werden entfernt             |
-    #         ==> Somit bleiben 6 Fragen pro Kategorie      |
-    #             > 6 Fragen * 4 Kategorien = 24 Fragen  <---
+    qCount = cfg['qCount']                              # z.B.:   24  |  24 Fragen werden gestellt <-------------
+    qCountPerCategory = qCount / 4                      # 24 / 4 = 6 Fragen pro Kategorie                       |
+    qToRemovePerCategory = 10 - qCountPerCategory       # 10 - 6 = 4 Fragen werden entfernt                     |
+                                                        #         ==> Somit bleiben 6 Fragen pro Kategorie      |
+                                                        #             > 6 Fragen * 4 Kategorien = 24 Fragen  <---
     for category in questions:
         random.shuffle(category)
         for _ in range(int(qToRemovePerCategory)):
@@ -115,7 +115,7 @@ def runQuiz(arg1):
         for i in range(questionLength):
             qAnimationLog = question[:i + 1]
             print(f'{qId} {qAnimationLog}', end='\r', flush=True)
-            time.sleep(0.1)
+            time.sleep(0.05)
         print('\n')
         qType = questionObject['q_type']
 
@@ -133,19 +133,20 @@ def runQuiz(arg1):
         time.sleep(0.35)
 
         if qType == 'input':
-            answers = questionObject['content']['answers']
+            answers_raw = questionObject['content']['answers']
+            answers = []
+            for el in answers_raw:
+                answers.append(el.lower())
             answer = input(
                 f'{colors[category] + '?'} {Fore.LIGHTWHITE_EX + Style.NORMAL + 'Wie lautet deine Antwort? '}' + Fore.LIGHTCYAN_EX + Style.NORMAL)
-            for correct in answers:
-                if answer.lower() == correct.lower():
-                    print(Fore.GREEN + Style.BRIGHT + 'Richtig!')
-                    scores[player['name']] += 1
-                    break
-                else:
-                    print(Fore.RED + Style.BRIGHT + 'Falsch!')
-                    print(Fore.LIGHTWHITE_EX + Style.NORMAL + 'Richtige Antwort: ' + colors[
-                        category] + Style.BRIGHT + correct)
-                    break
+            if answer.lower() in answers:
+                print(Fore.GREEN + Style.BRIGHT + 'Richtig!')
+                scores[player['name']] += 1
+            else:
+                print(Fore.RED + Style.BRIGHT + 'Falsch!')
+                print(Fore.LIGHTWHITE_EX + Style.NORMAL + 'Richtige Antwort: ' + colors[
+                    category] + Style.BRIGHT + answers_raw[0])
+
         elif qType == 'multiple_choice':
             print(
                 f'{Fore.LIGHTWHITE_EX + Style.NORMAL + 'Um deine Antwortmöglichkeit auszuwählen, drücke die Zahl 1, 2, 3 oder 4.'}')
