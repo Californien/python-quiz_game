@@ -25,14 +25,17 @@ if is_pycharm_console():
 c_b = Fore.CYAN + Style.BRIGHT
 c = Fore.CYAN
 lc_b = Fore.LIGHTCYAN_EX + Style.BRIGHT
-lc = Fore.LIGHTCYAN_EX
+lc = Fore.LIGHTCYAN_EX + Style.NORMAL
 reset = Style.RESET_ALL
+
+willkommen = lc_b + '< WILLKOMMEN >'
+quizgame = lc_b + 'Quizgame'
 
 if not is_pycharm_console():
     space = '                   '
-    print(lc_b + space + '╭──────────────────────────────────────────────────────────────╮')
-    print(space + '│                        < WILLKOMMEN >                        │')
-    print(space + '│                           Quizgame                           │')
+    print(lc + space + '╭──────────────────────────────────────────────────────────────╮')
+    print(space + f'│                        ' + willkommen + lc + '                        │')
+    print(space + f'│                           ' + quizgame + lc + '                           │')
     print(space + '╰──────────────────────────────────────────────────────────────╯' + reset)
 
     print(c_b + space + '               Willkommen beim besten Quiz-Spiel!' + reset)
